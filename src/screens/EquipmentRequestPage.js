@@ -57,15 +57,13 @@ const EquipmentRequestPage = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      {/* Back Button */}
+
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Text style={styles.backText}>Back</Text>
       </TouchableOpacity>
 
-      {/* Page Title */}
       <Text style={styles.title}>Request Equipment for {labName}</Text>
 
-      {/* Equipment Input List */}
       <FlatList
         data={equipment}
         keyExtractor={(item, index) => index.toString()}
@@ -79,12 +77,10 @@ const EquipmentRequestPage = ({ route }) => {
         )}
       />
 
-      {/* Add Equipment Button */}
       <TouchableOpacity style={styles.addButton} onPress={addEquipmentField}>
         <Text style={styles.addText}>+ Add Equipment</Text>
       </TouchableOpacity>
 
-      {/* Submit Request Button */}
       <Button title="Submit Request" onPress={submitRequest} disabled={equipment.length === 0} />
     </View>
   );

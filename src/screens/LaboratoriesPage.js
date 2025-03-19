@@ -20,15 +20,13 @@ const LaboratoriesPage = () => {
 
   return (
     <View style={styles.container}>
-      {/* Back Button */}
+
       <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.backButtonContainer}>
         <Text style={styles.backButton}>Back</Text>
       </TouchableOpacity>
 
-      {/* Title */}
       <Text style={styles.title}>Laboratory List</Text>
 
-      {/* List of Laboratories */}
       <FlatList
         data={laboratories}
         keyExtractor={(item) => item.id}

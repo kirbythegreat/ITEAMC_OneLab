@@ -44,15 +44,12 @@ const ProfilePage = () => {
         try {
             let updatedBookings = [...bookedLabs];
     
-            // Remove the specific equipment
             updatedBookings[labIndex].equipment.splice(equipmentIndex, 1);
     
-            // If no equipment remains, remove the entire lab entry
             if (updatedBookings[labIndex].equipment.length === 0) {
                 updatedBookings.splice(labIndex, 1);
             }
     
-            // Update state and AsyncStorage
             setBookedLabs(updatedBookings);
             await AsyncStorage.setItem('bookedLabs', JSON.stringify(updatedBookings));
         } catch (error) {

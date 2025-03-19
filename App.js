@@ -24,7 +24,7 @@ const App = () => {
     const checkAuth = async () => {
       try {
         const token = await AsyncStorage.getItem('userToken');
-        setIsLoggedIn(token !== null); // Ensure correct boolean value
+        setIsLoggedIn(token !== null);
       } catch (error) {
         console.error('Error checking auth:', error);
       } finally {

@@ -7,7 +7,7 @@ const HomePage = () => {
 
   return (
     <View style={styles.container}>
-      {/* Header with Profile Text Button */}
+
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Laboratory System</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
@@ -15,20 +15,17 @@ const HomePage = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Banner Image */}
       <Image
         source={require('../assets/lab-banner.jpg')}
         style={styles.banner}
         resizeMode="cover"
       />
 
-      {/* App Description */}
       <Text style={styles.description}>
         Manage your laboratory bookings and equipment requests easily. 
         Browse available laboratories and make your requests hassle-free!
       </Text>
 
-      {/* View Laboratories Button */}
       <TouchableOpacity 
         style={styles.button} 
         onPress={() => navigation.navigate('Laboratories')}

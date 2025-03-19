@@ -26,13 +26,11 @@ const RegisterPage = ({ navigation }) => {
       const storedUsers = await AsyncStorage.getItem('users');
       const users = storedUsers ? JSON.parse(storedUsers) : [];
 
-      // Check if email already exists
       if (users.some(user => user.email === email)) {
         showAlert('Error', 'Email already registered. Choose another.');
         return;
       }
 
-      // Add new user
       users.push({ email, password });
       await AsyncStorage.setItem('users', JSON.stringify(users));
 

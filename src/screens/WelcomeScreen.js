@@ -17,9 +17,9 @@ const WelcomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to the Laboratory Booking App</Text>
+      <Text style={styles.title}>Welcome to the OneLab App</Text>
       <Text style={styles.subtitle}>
-        Book and manage your laboratory sessions with ease.
+        Book and borrow equipment with ease.
       </Text>
 
       {isRegistered ? (
