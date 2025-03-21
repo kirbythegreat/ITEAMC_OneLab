@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  StyleSheet,
+  ImageBackground,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LoginRegisterStyles from '../styles/LoginRegisterStyle';
 
 const RegisterPage = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [hidePassword, setHidePassword] = useState(true);
 
   const handleRegister = async () => {
     if (!email.trim() || !password.trim()) {
@@ -49,44 +59,55 @@ const RegisterPage = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Register</Text>
+      <ImageBackground
+        source={require('../assets/LoginRegisterBg.png')}
+        style={LoginRegisterStyles.background}
+      >
+      <View style={LoginRegisterStyles.container}>
+        <Text style={LoginRegisterStyles.title}>Welcome to OneLab!</Text>
+        <Text style={LoginRegisterStyles.subtitle}>Start Scheduling Labs and Equipment</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Enter email"
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-        keyboardType="email-address"
-      />
+        <View style={LoginRegisterStyles.inputContainer}>
+          <TextInput
+            style={LoginRegisterStyles.input}
+            placeholder="Email"
+            placeholderTextColor="#999"
+            value={email}
+            onChangeText={setEmail}
+            autoCapitalize="none"
+            keyboardType="email-address"
+          />
+        </View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Enter password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
+        <View style={LoginRegisterStyles.inputContainer}>
+         
+          <TextInput
+            style={LoginRegisterStyles.input}
+            placeholder="Password"
+            placeholderTextColor="#999"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={hidePassword}
+          />
+          <TouchableOpacity
+            onPress={() => setHidePassword(!hidePassword)}
+            style={LoginRegisterStyles.eyeIcon}
+          >
+          </TouchableOpacity>
+        </View>
 
-      <TouchableOpacity style={styles.registerButton} onPress={handleRegister}>
-        <Text style={styles.registerButtonText}>Register</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={LoginRegisterStyles.button} onPress={handleRegister}>
+          <Text style={LoginRegisterStyles.buttonText}>REGISTER</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.loginText}>Already have an account? Login</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <Text style={LoginRegisterStyles.footerText}>
+            Already have an account? <Text style={LoginRegisterStyles.footerLink}>Login</Text>
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, backgroundColor: '#f8f9fa' },
-  title: { fontSize: 26, fontWeight: 'bold', marginBottom: 20, color: '#333' },
-  input: { width: '90%', padding: 12, marginBottom: 15, borderWidth: 1, borderColor: '#ccc', borderRadius: 8, backgroundColor: '#fff' },
-  registerButton: { width: '90%', backgroundColor: '#4CAF50', padding: 14, alignItems: 'center', borderRadius: 8, marginVertical: 10 },
-  registerButtonText: { color: 'white', fontSize: 18, fontWeight: 'bold' },
-  loginText: { marginTop: 10, color: '#007BFF', fontSize: 16 },
-});
 
 export default RegisterPage;

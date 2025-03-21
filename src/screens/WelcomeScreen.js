@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { styles } from '../styles/MainStyle';
+
 
 const WelcomeScreen = ({ navigation }) => {
   const [isRegistered, setIsRegistered] = useState(false);
@@ -16,59 +19,31 @@ const WelcomeScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome to the OneLab App</Text>
-      <Text style={styles.subtitle}>
-        Book and borrow equipment with ease.
-      </Text>
+      <ImageBackground
+        source={require("../assets/WelcomeScreen.png")}
+        style={styles.backgroundImage}
+      >
+      <Icon name="flask" size={80} color="#4CAF50" style={styles.icon} />
+      <Text style={styles.title}>Welcome to OneLab</Text>
+      <Text style={styles.subtitle}>Book and borrow equipment with ease.</Text>
 
       {isRegistered ? (
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.buttonText}>Login</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Login')}
+        >
+          <Text style={styles.buttonText}>Start Now</Text>
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Register')}>
-          <Text style={styles.buttonText}>Register</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Register')}
+        >
+          <Text style={styles.buttonText}>Start Now</Text>
         </TouchableOpacity>
       )}
-    </View>
+    </ImageBackground>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f8f9fa',
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
-    marginBottom: 30,
-  },
-  button: {
-    width: '90%',
-    backgroundColor: '#4CAF50',
-    padding: 14,
-    alignItems: 'center',
-    borderRadius: 8,
-    marginVertical: 10,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
 
 export default WelcomeScreen;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, ImageBackground, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LoginRegisterStyles from '../styles/LoginRegisterStyle';
 
 const LoginPage = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -33,44 +34,49 @@ const LoginPage = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+    <ImageBackground
+      source={require('../assets/LoginRegisterBg.png')}
+      style={LoginRegisterStyles.background}
+    >
+      <View style={LoginRegisterStyles.container}>
+        <Text style={LoginRegisterStyles.title}>Welcome Back!</Text>
+        <Text style={LoginRegisterStyles.subtitle}>Log in to your account</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Enter email"
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-        keyboardType="email-address"
-      />
+        <View style={LoginRegisterStyles.inputContainer}>
+          <TextInput
+            style={LoginRegisterStyles.input}
+            placeholder="Enter your email"
+            placeholderTextColor="#999"
+            value={email}
+            onChangeText={setEmail}
+            autoCapitalize="none"
+            keyboardType="email-address"
+          />
+        </View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Enter password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
+        <View style={LoginRegisterStyles.inputContainer}>
+          <TextInput
+            style={LoginRegisterStyles.input}
+            placeholder="Enter your password"
+            placeholderTextColor="#999"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+        </View>
 
-      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.loginButtonText}>Login</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={LoginRegisterStyles.button} onPress={handleLogin}>
+          <Text style={LoginRegisterStyles.buttonText}>LOGIN</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.registerText}>Don't have an account? Register</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+          <Text style={LoginRegisterStyles.footerText}>
+            Don't have an account? <Text style={LoginRegisterStyles.footerLink}>Register</Text>
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, backgroundColor: '#f8f9fa' },
-  title: { fontSize: 26, fontWeight: 'bold', marginBottom: 20, color: '#333' },
-  input: { width: '90%', padding: 12, marginBottom: 15, borderWidth: 1, borderColor: '#ccc', borderRadius: 8, backgroundColor: '#fff' },
-  loginButton: { width: '90%', backgroundColor: '#4CAF50', padding: 12, alignItems: 'center', borderRadius: 8, marginVertical: 10 },
-  loginButtonText: { color: 'white', fontSize: 18, fontWeight: 'bold' },
-  registerText: { marginTop: 10, color: '#007BFF', fontSize: 16 },
-});
 
 export default LoginPage;

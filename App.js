@@ -13,6 +13,7 @@ import LoginPage from './src/screens/LoginPage';
 import RegisterPage from './src/screens/RegisterPage';
 import EquipmentRequestPage from './src/screens/EquipmentRequestPage';
 import WelcomeScreen from './src/screens/WelcomeScreen';
+import Schedules from './src/screens/Schedules';
 
 const Stack = createStackNavigator();
 
@@ -58,6 +59,7 @@ const App = () => {
             <Stack.Screen name="Login" component={LoginPage} />
             <Stack.Screen name="Register" component={RegisterPage} />
             <Stack.Screen name="EquipmentRequest" component={EquipmentRequestPage} />
+            <Stack.Screen name="Schedules" component={Schedules} />
           </Stack.Navigator>
         </NavigationContainer>
       </GestureHandlerRootView>

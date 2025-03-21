@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import LaboratoriesStyles from '../styles/LaboratoriesStyles';
 
 const laboratories = [
   { id: '1', name: 'Physics Lab' },
@@ -19,43 +21,29 @@ const LaboratoriesPage = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-
-      <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.backButtonContainer}>
-        <Text style={styles.backButton}>Back</Text>
-      </TouchableOpacity>
-
-      <Text style={styles.title}>Laboratory List</Text>
+    <View style={LaboratoriesStyles.container}>
+      <View style={LaboratoriesStyles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Text style={LaboratoriesStyles.headerTitle}>Back</Text>
+        </TouchableOpacity>
+        <Text style={LaboratoriesStyles.headerTitle}>Laboratory List</Text>
+      </View>
 
       <FlatList
         data={laboratories}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity 
-            style={styles.labItem} 
+          <TouchableOpacity
+            style={LaboratoriesStyles.labItem}
             onPress={() => navigation.navigate('EquipmentRequest', { labName: item.name })}
           >
-            <Text style={styles.labText}>{item.name}</Text>
+            <Text style={LaboratoriesStyles.labText}>{item.name}</Text>
           </TouchableOpacity>
         )}
+        contentContainerStyle={LaboratoriesStyles.listContainer}
       />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: '#f8f9fa', marginTop: 20 },
-  backButtonContainer: { marginBottom: 10 }, 
-  backButton: { fontSize: 22, color: 'blue' },
-  title: { fontSize: 22, fontWeight: 'bold', textAlign: 'center', marginBottom: 20 },
-  labItem: { 
-    padding: 15, 
-    marginVertical: 10, 
-    backgroundColor: '#4CAF50', 
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  labText: { fontSize: 18, color: 'white' },
-});
 
 export default LaboratoriesPage;
