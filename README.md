@@ -1,3 +1,5 @@
+[**MEMBERS:**] JOHNREY PAMADA, RAM CAMPOS, PAOLO JOY SAN JOSE
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
